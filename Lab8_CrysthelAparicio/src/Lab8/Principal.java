@@ -5,17 +5,49 @@
  */
 package Lab8;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author COPECO -13
  */
 public class Principal extends javax.swing.JFrame {
 
+    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modelo2 = new DefaultTableModel();
+    String usuario = "erick123";
+    String contraseña = "321";
+    ArrayList<productos> productos = new ArrayList();
+    ArrayList<cliente> clientes = new ArrayList();
+    cliente cliente = new cliente();
+
+    int cont1 = 0;
+    int cont = 0;
+
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        modelo.addColumn("cantidad");
+        modelo.addColumn("nombre");
+        modelo.addColumn("precio");
+        modelo.addColumn("fecha");;
+        jt_tabla_productos.setModel(modelo);
+
+        modelo2.addColumn("nombre");
+        modelo2.addColumn("usuario");
+        modelo2.addColumn("contraseña");
+        modelo2.addColumn("productos");
+        modelo2.addColumn("ID");
+        modelo2.addColumn("saldo");
+        modelo2.addColumn("cuenta");
+
+        jt_clientes.setModel(modelo2);
     }
 
     /**
@@ -27,7 +59,424 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jd_login = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        tf_usuario = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        tf_contraseña = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jd_menu = new javax.swing.JDialog();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        tf_nombre_pro = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        js_cantidad = new javax.swing.JSpinner();
+        jLabel5 = new javax.swing.JLabel();
+        tf_precio = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jd_fecha = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt_tabla_productos = new javax.swing.JTable();
+        agregar_productos = new javax.swing.JButton();
+        modificar_productos = new javax.swing.JButton();
+        eliminar_productos = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        tf_nombre_cliente = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        tf_usuario_cliente = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        tf_contraseña_cliente = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        tf_cuenta = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        tf_id_cliente = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        tf_saldo_cliente = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jl_productos = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jt_clientes1 = new javax.swing.JTable();
+        agregar_cliente = new javax.swing.JButton();
+        modificar_cliente = new javax.swing.JButton();
+        elim_cliente = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jt_clientes = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        miLogin = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+
+        jLabel1.setText("Usuario");
+
+        jLabel2.setText("Contraseña");
+
+        jButton1.setText("Entrar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_loginLayout = new javax.swing.GroupLayout(jd_login.getContentPane());
+        jd_login.getContentPane().setLayout(jd_loginLayout);
+        jd_loginLayout.setHorizontalGroup(
+            jd_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_loginLayout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addGroup(jd_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_loginLayout.createSequentialGroup()
+                        .addComponent(tf_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jd_loginLayout.createSequentialGroup()
+                        .addComponent(tf_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(90, Short.MAX_VALUE))))
+            .addGroup(jd_loginLayout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jd_loginLayout.createSequentialGroup()
+                .addGroup(jd_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_loginLayout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(jLabel1))
+                    .addGroup(jd_loginLayout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jd_loginLayout.setVerticalGroup(
+            jd_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_loginLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addComponent(tf_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tf_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
+        jLabel3.setText("Nombre");
+
+        jLabel4.setText("cantidad");
+
+        js_cantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        jLabel5.setText("precio");
+
+        jLabel6.setText("fecha de caducidad");
+
+        jt_tabla_productos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "cantidad", "nombre", "precio", "fecha"
+            }
+        ));
+        jScrollPane1.setViewportView(jt_tabla_productos);
+
+        agregar_productos.setText("Agregar");
+        agregar_productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregar_productosMouseClicked(evt);
+            }
+        });
+
+        modificar_productos.setText("Modificar");
+        modificar_productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificar_productosMouseClicked(evt);
+            }
+        });
+
+        eliminar_productos.setText("eliminar");
+        eliminar_productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminar_productosMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(105, 105, 105))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(93, 93, 93)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tf_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(js_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(95, 95, 95)
+                            .addComponent(tf_nombre_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(41, 41, 41)
+                        .addComponent(jd_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(138, 138, 138)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(agregar_productos)
+                    .addComponent(modificar_productos)
+                    .addComponent(eliminar_productos))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tf_nombre_pro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(42, 42, 42)
+                            .addComponent(jLabel4))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(36, 36, 36)
+                            .addComponent(js_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(agregar_productos)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(tf_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(modificar_productos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(eliminar_productos)
+                        .addGap(28, 28, 28)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+
+        jTabbedPane1.addTab("PRODUCTOS", jPanel1);
+
+        jLabel7.setText("Nombre");
+
+        jLabel8.setText("Usuario");
+
+        jLabel9.setText("Contraseña");
+
+        jLabel13.setText("Cuenta");
+
+        jLabel11.setText("ID");
+
+        jLabel12.setText("Saldo");
+
+        jLabel10.setText("Productos");
+
+        jl_productos.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jl_productos);
+
+        jt_clientes1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Usuario", "Contraseña", "Porductos", "ID", "Saldo", "cuenta"
+            }
+        ));
+        jScrollPane4.setViewportView(jt_clientes1);
+
+        agregar_cliente.setText("agregar");
+        agregar_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregar_clienteMouseClicked(evt);
+            }
+        });
+
+        modificar_cliente.setText("modificar");
+        modificar_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificar_clienteMouseClicked(evt);
+            }
+        });
+
+        elim_cliente.setText("eliminar");
+        elim_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                elim_clienteMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_usuario_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_nombre_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel13)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_contraseña_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tf_saldo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(58, 58, 58)
+                        .addComponent(tf_id_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(agregar_cliente)
+                        .addGap(56, 56, 56)
+                        .addComponent(modificar_cliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(elim_cliente))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(74, 74, 74))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(tf_nombre_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(tf_usuario_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(tf_contraseña_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(tf_cuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregar_cliente)
+                    .addComponent(modificar_cliente)
+                    .addComponent(elim_cliente))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(tf_id_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(jLabel12))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(tf_saldo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("CLIENTES", jPanel2);
+
+        javax.swing.GroupLayout jd_menuLayout = new javax.swing.GroupLayout(jd_menu.getContentPane());
+        jd_menu.getContentPane().setLayout(jd_menuLayout);
+        jd_menuLayout.setHorizontalGroup(
+            jd_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
+        );
+        jd_menuLayout.setVerticalGroup(
+            jd_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
+        );
+
+        jt_clientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Usuario", "Contraseña", "Porductos", "ID", "Saldo", "cuenta"
+            }
+        ));
+        jScrollPane3.setViewportView(jt_clientes);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jMenu1.setText("Administrador");
+
+        miLogin.setText("Login");
+        miLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                miLoginMouseClicked(evt);
+            }
+        });
+        jMenu1.add(miLogin);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -37,11 +486,232 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        if (tf_usuario.getText().equals(usuario) && tf_contraseña.getText().equals(contraseña)) {
+            jd_menu.setModal(true);
+            jd_menu.pack();
+            jd_menu.setLocationRelativeTo(this);
+            jd_menu.setVisible(true);
+            jd_login.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void miLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miLoginMouseClicked
+        jd_login.setModal(true);
+        jd_login.pack();
+        jd_login.setLocationRelativeTo(this);
+        jd_login.setVisible(true);
+    }//GEN-LAST:event_miLoginMouseClicked
+
+    private void agregar_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregar_productosMouseClicked
+        // TODO add your handling code here:
+        Dba db=new Dba("./base1.mdb");
+        db.conectar();
+
+        try {
+            String nombre=tf_nombre_pro.getText();
+            int cantidad=Integer.parseInt(js_cantidad.getValue().toString());
+            double precio=Double.parseDouble(tf_precio.getText());
+            String  fecha_caducidad= jd_fecha.getDate().toString();
+
+            java.util.Date fecha= jd_fecha.getDate();
+
+            db.query.execute("INSERT INTO tabla_productos (nombre, precio, fecha,cantidad)VALUES('"+nombre+
+                "',"+precio+",'"+fecha_caducidad+"',"+cantidad+")");
+
+            productos.add(new productos(cantidad, nombre, precio, fecha));
+            System.out.println(productos);
+            Object [] newrow= new Object[4];
+            newrow[0]=productos.get(cont).getCantidad();
+            newrow[1]=productos.get(cont).getNombre();
+            newrow[2]=productos.get(cont).getPrecio();
+            newrow[3]=productos.get(cont).getFecha();
+            modelo.addRow(newrow);
+            cont++;
+            tf_nombre_pro.setText("");
+            tf_precio.setText("");
+
+            DefaultListModel modelo_lista=(DefaultListModel)jl_productos.getModel();
+            modelo_lista.addElement(new productos(cantidad, nombre, precio, fecha));
+            jl_productos.setModel(modelo_lista);
+
+            db.commit();//commit es como el flush
+            JOptionPane.showMessageDialog(jd_menu, "producto agregado");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        db.desconectar();
+
+    }//GEN-LAST:event_agregar_productosMouseClicked
+
+    private void modificar_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_productosMouseClicked
+        
+        int x=jt_tabla_productos.getSelectedRow();
+        String nombre=productos.get(x).getNombre();
+        productos product=new productos();
+       
+        tf_nombre_pro.setText(jt_tabla_productos.getValueAt(x, 0).toString());
+        tf_precio.setText(jt_tabla_productos.getValueAt(x, 2).toString());
+        modelo.removeRow(x);
+       
+        Dba db=new Dba("./base1.mdb");
+        db.conectar();
+
+        try {
+
+            db.query.execute("update tabla_productos set nombre='"+tf_nombre_pro.getText()+"',cantidad="+Integer.parseInt(jd_fecha.getDate().toString())+",precio='"+Double.parseDouble(tf_precio.getText())+"'where nombre='"+nombre+"'");
+            db.commit();
+            productos.get(x).setNombre(tf_nombre_pro.getText());
+            productos.get(x).setCantidad(Integer.parseInt(jd_fecha.getDate().toString()));
+            productos.get(x).setPrecio(Double.parseDouble(tf_precio.getText()));
+
+            JOptionPane.showMessageDialog(jd_menu, "producto modificado");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        db.desconectar();
+
+    }//GEN-LAST:event_modificar_productosMouseClicked
+
+    private void eliminar_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar_productosMouseClicked
+        // TODO add your handling code here:
+        int x=jt_tabla_productos.getSelectedRow();
+        String nombre=productos.get(x).getNombre();
+        Dba db=new Dba("./base1.mdb");
+        db.conectar();
+
+        try {
+            db.query.execute("delete from tabla_productos where nombre='"+nombre+"'");
+            db.commit();
+            modelo.removeRow(x);
+            productos.remove(x);
+            JOptionPane.showMessageDialog(jd_menu, "producto eliminado");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        db.desconectar();
+
+    }//GEN-LAST:event_eliminar_productosMouseClicked
+
+    private void agregar_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregar_clienteMouseClicked
+        // TODO add your handling code here:
+        Dba db=new Dba("./base1.mdb");
+        db.conectar();
+        try {
+            String cuenta=tf_cuenta.getText();
+            String nombre=tf_nombre_cliente.getText();
+            String usuario2=tf_usuario_cliente.getText();
+            String contra=tf_contraseña_cliente.getText();
+            String ID=tf_id_cliente.getText();
+            double saldo=Double.parseDouble(tf_saldo_cliente.getText());
+            productos pro= productos.get(jl_productos.getSelectedIndex());
+            String p=pro.toString();
+
+            db.query.execute("INSERT INTO tabla_cliente ( nombre, usuario, contraseña,productos,ID, saldo,cuenta"
+                + ")VALUES('"+nombre+"','"+usuario2+"','"+contra+"','"+p+"','"+ID+"',"+saldo+","+cuenta+")");
+
+            clientes.add(new cliente(cuenta, nombre, usuario2, contra, ID, saldo));
+            clientes.get(cont1).setProductos(pro);
+
+            //
+            Object [] newrow2= new Object[7];
+            newrow2[0]=clientes.get(cont1).getNombre();
+            newrow2[1]=clientes.get(cont1).getUsuario();
+            newrow2[2]=clientes.get(cont1).getContraseña();
+            newrow2[3]=clientes.get(cont1).getProductos();
+            newrow2[4]=clientes.get(cont1).getID();
+            newrow2[5]=clientes.get(cont1).getSaldo();
+            newrow2[6]=clientes.get(cont1).getCuenta();
+
+            modelo2.addRow(newrow2);
+            cont1++;
+            tf_nombre_cliente.setText("");
+            tf_usuario_cliente.setText("");
+            tf_contraseña_cliente.setText("");
+            tf_cuenta.setText("");
+            tf_saldo_cliente.setText("");
+            tf_id_cliente.setText("");
+
+            db.commit();//commit es como el flush
+            JOptionPane.showMessageDialog(jd_menu, "producto agregado");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        db.desconectar();
+
+    }//GEN-LAST:event_agregar_clienteMouseClicked
+
+    private void modificar_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_clienteMouseClicked
+        // TODO add your handling code here:
+        int x=jt_clientes.getSelectedRow();
+        if(x>=0){
+
+            String nombre=clientes.get(x).getNombre();
+
+            tf_nombre_cliente.setText(jt_clientes.getValueAt(x, 0).toString());
+            tf_usuario_cliente.setText(jt_clientes.getValueAt(x, 1).toString());
+            tf_contraseña_cliente.setText(jt_clientes.getValueAt(x, 2).toString());
+
+            tf_id_cliente.setText(jt_clientes.getValueAt(x, 4).toString());
+            tf_saldo_cliente.setText(jt_clientes.getValueAt(x, 5).toString());
+            tf_cuenta.setText(jt_clientes.getValueAt(x, 6).toString());
+            productos pro= productos.get(jl_productos.getSelectedIndex());
+            String p=pro.toString();
+            modelo2.removeRow(x);
+            //tf_nombre_r.setText(tabla_rocoso.getValueAt(filasele, 0).toString());
+
+            Dba db=new Dba("./base1.mdb");
+            db.conectar();
+
+            try {
+
+                db.query.execute("update tabla_cliente set nombre='"+tf_nombre_cliente.getText() +"',usuario='"+tf_usuario_cliente.getText()+"'"
+                    + ",productos='"+p+"',ID='"+tf_saldo_cliente+"',cuenta='"+tf_cuenta.getText()+"'where nombre='"+nombre+"'");
+                db.commit();
+
+                clientes.get(x).setNombre(tf_nombre_cliente.getText());
+                clientes.get(x).setUsuario(tf_usuario_cliente.getText());
+                clientes.get(x).setContraseña(tf_contraseña_cliente.getText());
+                clientes.get(x).setCuenta(tf_cuenta.getText());
+
+                clientes.get(x).setID(tf_id_cliente.getText());
+                clientes.get(x).setSaldo(Double.parseDouble(tf_saldo_cliente.getText()));
+
+                JOptionPane.showMessageDialog(jd_menu, "cliente modificado");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            db.desconectar();
+        }
+    }//GEN-LAST:event_modificar_clienteMouseClicked
+
+    private void elim_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_elim_clienteMouseClicked
+        // TODO add your handling code here:
+        int x=jt_clientes.getSelectedRow();
+        String nombre=clientes.get(x).getNombre();
+        Dba db=new Dba("./base1.mdb");
+        db.conectar();
+
+        try {
+            db.query.execute("delete from tabla_cliente where nombre='"+nombre+"'");
+            db.commit();
+            modelo2.removeRow(x);
+            clientes.remove(x);
+            JOptionPane.showMessageDialog(jd_menu, "cliente eliminado");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        db.desconectar();
+    }//GEN-LAST:event_elim_clienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -79,5 +749,54 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregar_cliente;
+    private javax.swing.JButton agregar_productos;
+    private javax.swing.JButton elim_cliente;
+    private javax.swing.JButton eliminar_productos;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private com.toedter.calendar.JDateChooser jd_fecha;
+    private javax.swing.JDialog jd_login;
+    private javax.swing.JDialog jd_menu;
+    private javax.swing.JList<String> jl_productos;
+    private javax.swing.JSpinner js_cantidad;
+    private javax.swing.JTable jt_clientes;
+    private javax.swing.JTable jt_clientes1;
+    private javax.swing.JTable jt_tabla_productos;
+    private javax.swing.JMenuItem miLogin;
+    private javax.swing.JButton modificar_cliente;
+    private javax.swing.JButton modificar_productos;
+    private javax.swing.JTextField tf_contraseña;
+    private javax.swing.JTextField tf_contraseña_cliente;
+    private javax.swing.JTextField tf_cuenta;
+    private javax.swing.JTextField tf_id_cliente;
+    private javax.swing.JTextField tf_nombre_cliente;
+    private javax.swing.JTextField tf_nombre_pro;
+    private javax.swing.JTextField tf_precio;
+    private javax.swing.JTextField tf_saldo_cliente;
+    private javax.swing.JTextField tf_usuario;
+    private javax.swing.JTextField tf_usuario_cliente;
     // End of variables declaration//GEN-END:variables
 }
